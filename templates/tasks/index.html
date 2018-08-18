@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome to DjangoDemo {% endblock %}
+
+{% block content %}
+
+    <ul id="talk">
+        {% for task in tasks %}
+            <li>{{ task }} - {{ task.description }}</li>
+        {% endfor %}
+    </ul>
+
+<form id="taskform" method="post">
+    {% load widget_tweaks %}
+    {% csrf_token %}
+    {{ taskform.errors }}
+    <label>Title</label>
+    {{ taskform.title|attr:"class:form-control"|attr:"id:title" }}
+    <label>Description</label>
+    {{ taskform.description|attr:"class:form-control"|attr:"id:description" }}
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+
+
+{% endblock %}
